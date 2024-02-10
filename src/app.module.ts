@@ -8,6 +8,8 @@ import { DataSensor } from './data-sensor/entities/data-sensor.entity';
 import { DataSensorModule } from './data-sensor/data-sensor.module';
 import { ActionHistoryModule } from './action-history/action-history.module';
 import { ActionHistory } from './action-history/entities/action-history.entity';
+import { DataDasboardModule } from './data-dasboard/data-dasboard.module';
+import { ClientsModule, Transport } from '@nestjs/microservices';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -23,6 +25,16 @@ import { ActionHistory } from './action-history/entities/action-history.entity';
     }),
     DataSensorModule,
     ActionHistoryModule,
+    DataDasboardModule,
+    ClientsModule.register([
+      {
+        name: 'MATH_SERVICE',
+        transport: Transport.MQTT,
+        options: {
+          url: 'mqtt://192.168.1.9:1883',
+        },
+      },
+    ]),
   ],
   controllers: [AppController],
   providers: [AppService],

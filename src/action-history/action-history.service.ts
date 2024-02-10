@@ -20,8 +20,8 @@ export class ActionHistoryService {
     return await this.actionHistory.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} actionHistory`;
+  async findOne(id: number) {
+    return await this.findOne(id);
   }
 
   update(id: number, updateActionHistoryDto: UpdateActionHistoryDto) {

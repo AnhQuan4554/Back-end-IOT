@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { DataSensorService } from './data-sensor.service';
 import { DataSensorDto } from './dtos/data-sensor.dto';
 
@@ -9,6 +9,10 @@ export class DataSensorController {
   @Get()
   async findAll() {
     return this.dataSenSorService.findAll();
+  }
+  @Get(':id')
+  async findOne(@Param('id') id: any) {
+    return this.dataSenSorService.findOne(id);
   }
   @Post()
   async creatData(@Body() dataSensorDto: DataSensorDto) {
