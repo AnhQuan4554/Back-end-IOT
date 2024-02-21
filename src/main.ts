@@ -13,7 +13,7 @@ async function bootstrap() {
     {
       transport: Transport.MQTT,
       options: {
-        url: 'mqtt://192.168.1.9:1883',
+        url: process.env.BROKER_URL,
       },
     },
   );

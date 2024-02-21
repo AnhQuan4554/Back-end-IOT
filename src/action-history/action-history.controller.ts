@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { ActionHistoryService } from './action-history.service';
 import { CreateActionHistoryDto } from './dto/create-action-history.dto';
@@ -21,7 +22,11 @@ export class ActionHistoryController {
   }
 
   @Get()
-  async findAll() {
+  async findAll(@Query('sort') sort: any) {
+    console.log(sort);
+    if (sort == 'LatestFirst' || sort == 'OldestFirst') {
+      return await this.actionHistoryService.findAllOrderedByCreatedAt(sort);
+    }
     return await this.actionHistoryService.findAll();
   }
 

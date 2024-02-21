@@ -19,6 +19,21 @@ export class ActionHistoryService {
     console.log(this.actionHistory.find());
     return await this.actionHistory.find();
   }
+  async findAllOrderedByCreatedAt(sort) {
+    if (sort == 'LatestFirst') {
+      return this.actionHistory.find({
+        order: {
+          create_at: 'DESC',
+        },
+      });
+    } else {
+      return this.actionHistory.find({
+        order: {
+          create_at: 'ASC',
+        },
+      });
+    }
+  }
 
   async findOne(id: number) {
     return await this.findOne(id);

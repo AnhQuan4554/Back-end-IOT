@@ -2,8 +2,16 @@ import { Injectable } from '@nestjs/common';
 import { CreateDataDasboardDto } from './dto/create-data-dasboard.dto';
 import { UpdateDataDasboardDto } from './dto/update-data-dasboard.dto';
 import * as mqtt from 'mqtt';
+import { Cron, CronExpression } from '@nestjs/schedule';
 @Injectable()
 export class DataDasboardService {
+  // private x = 0;
+  // @Cron(CronExpression.EVERY_SECOND)
+  // testCron() {
+  //   this.x = this.x + 1;
+  //   console.log('CRON++++', this.x);
+  //   return this.x.toString();
+  // }
   //////////////
   create(createDataDasboardDto: CreateDataDasboardDto) {
     return 'This action adds a new dataDasboard';
@@ -25,7 +33,7 @@ export class DataDasboardService {
     return `This action removes a #${id} dataDasboard`;
   }
   async publishMessage() {
-    const brokerUrl = 'mqtt://192.168.1.9:1883';
+    const brokerUrl = process.env.BROKER_URL;
     const client = await mqtt.connect(brokerUrl);
     client.on('connect', () => {
       console.log('MQTT client connected');

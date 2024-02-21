@@ -10,9 +10,11 @@ import { ActionHistoryModule } from './action-history/action-history.module';
 import { ActionHistory } from './action-history/entities/action-history.entity';
 import { DataDasboardModule } from './data-dasboard/data-dasboard.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ScheduleModule } from '@nestjs/schedule';
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    ScheduleModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -31,7 +33,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         name: 'MATH_SERVICE',
         transport: Transport.MQTT,
         options: {
-          url: 'mqtt://192.168.1.9:1883',
+          url: process.env.BROKER_URL,
         },
       },
     ]),

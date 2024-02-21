@@ -8,7 +8,9 @@ export class DataSensorController {
 
   @Get()
   async findAll() {
-    return this.dataSenSorService.findAll();
+    const data = await this.dataSenSorService.findAll();
+    // console.log(data);
+    return data;
   }
   @Get(':id')
   async findOne(@Param('id') id: any) {
