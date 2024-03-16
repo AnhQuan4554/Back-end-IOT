@@ -31,12 +31,11 @@ export class DataDasboardController {
   }
   @Get('test-cron')
   async testCron() {
-    return await this.dataDasboardService.testCron();
+    // return await this.dataDasboardService.testCron();
   }
   @Get('publish')
   async publishMessage() {
-    console.log('000111');
-    // await this.dataDasboardService.publishMessage();
+    await this.dataDasboardService.publishMessage();
 
     return 'Message published!';
   }
@@ -64,6 +63,6 @@ export class DataDasboardController {
     console.log('object');
     console.log('content data++', data);
     console.log(`Topic: ${context.getTopic()}`);
-    await this.messageData.push('ok');
+    // creat data
   }
 }

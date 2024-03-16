@@ -5,14 +5,6 @@ import * as mqtt from 'mqtt';
 import { Cron, CronExpression } from '@nestjs/schedule';
 @Injectable()
 export class DataDasboardService {
-  // private x = 0;
-  // @Cron(CronExpression.EVERY_SECOND)
-  // testCron() {
-  //   this.x = this.x + 1;
-  //   console.log('CRON++++', this.x);
-  //   return this.x.toString();
-  // }
-  //////////////
   create(createDataDasboardDto: CreateDataDasboardDto) {
     return 'This action adds a new dataDasboard';
   }

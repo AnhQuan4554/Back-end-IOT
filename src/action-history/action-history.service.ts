@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateActionHistoryDto } from './dto/create-action-history.dto';
 import { UpdateActionHistoryDto } from './dto/update-action-history.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -11,8 +11,15 @@ export class ActionHistoryService {
     @InjectRepository(ActionHistory)
     private actionHistory: Repository<ActionHistory>,
   ) {}
-  create(createActionHistoryDto: CreateActionHistoryDto) {
-    return 'This action adds a new actionHistory';
+  async create(createActionHistoryDto: CreateActionHistoryDto) {
+    // createActionHistoryDto.deviceName
+    const newDataActionHistory = await this.actionHistory.create(
+      createActionHistoryDto,
+    );
+
+    const res = await this.actionHistory.save(newDataActionHistory);
+    console.log(res);
+    return res;
   }
 
   async findAll() {
@@ -39,8 +46,13 @@ export class ActionHistoryService {
     return await this.findOne(id);
   }
 
-  update(id: number, updateActionHistoryDto: UpdateActionHistoryDto) {
-    return `This action updates a #${id} actionHistory`;
+  async update(id: number, updateActionHistoryDto: UpdateActionHistoryDto) {
+    const actionHistory = await this.actionHistory.findOneBy({ id });
+    if (!actionHistory) {
+      throw new HttpException('Action history not found', HttpStatus.NOT_FOUND);
+    }
+    await this.actionHistory.update(id, updateActionHistoryDto);
+    return await this.actionHistory.findOneBy({ id });
   }
 
   remove(id: number) {

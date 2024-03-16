@@ -1,4 +1,15 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateActionHistoryDto } from './create-action-history.dto';
+import { IsNotEmpty, IsNumber } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
-export class UpdateActionHistoryDto extends PartialType(CreateActionHistoryDto) {}
+export class UpdateActionHistoryDto {
+  @ApiProperty()
+  @IsNotEmpty()
+  deviceName: string;
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsNumber()
+  action: number;
+  @ApiProperty()
+  @IsNotEmpty()
+  create_at: Date;
+}

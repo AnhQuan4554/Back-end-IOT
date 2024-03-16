@@ -1,1 +1,3 @@
-export class CreateDataDasboardDto {}
+export class CreateDataDasboardDto {
+    
+}

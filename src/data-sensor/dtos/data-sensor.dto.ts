@@ -1,15 +1,21 @@
 // create-user.dto.ts
 
-// import { IsString, IsEmail } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNumber, IsString } from 'class-validator';
 
 export class DataSensorDto {
-  //   @IsString()
-  readonly temperature: number;
+  @IsNumber()
+  @ApiProperty()
+  temperature: number;
 
-  //   @IsEmail()
-  readonly humb: number;
+  @IsNumber()
+  @ApiProperty()
+  humb: number;
 
-  //   @IsString()
-  readonly light: number;
-  readonly create_at: Date;
+  @IsNumber()
+  @ApiProperty()
+  light: number;
+  @IsString()
+  @ApiProperty()
+  create_at: Date;
 }
