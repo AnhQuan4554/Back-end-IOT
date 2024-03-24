@@ -1,9 +1,14 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 export class CreateActionHistoryDto {
-  readonly deviceId: number;
-
-  //   @IsEmail()
-  readonly action: number;
-
-  //   @IsString()
-  readonly create_at: Date;
+  @ApiProperty()
+  @IsNotEmpty()
+  deviceName: string;
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsNumber()
+  action: number;
+  @ApiProperty()
+  @IsNotEmpty()
+  create_at: Date;
 }

@@ -1,18 +1,20 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class ActionHistory {
   @PrimaryGeneratedColumn()
+  @ApiProperty()
   id: number;
 
   @Column()
-  deviceId: number;
+  @ApiProperty()
+  deviceName: string;
 
   @Column()
+  @ApiProperty()
   action: number;
 
   @Column()
-  light: number;
-
-  @Column()
+  @ApiProperty()
   create_at: Date;
 }

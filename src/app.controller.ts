@@ -9,4 +9,9 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+  // @MessagePattern('notifications')
+  // async getNotifications(@Payload() data: any, @Ctx() context: MqttContext) {
+  //   console.log('object1111', data);
+  //   console.log(context);
+  // }
 }
