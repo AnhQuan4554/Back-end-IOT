@@ -103,7 +103,7 @@ export class DataSensorService {
       }
     } catch (error) {
       console.error('Error deleting data sensor:', error);
-      return false; // Trả về false nếu có lỗi xảy ra
+      return false;
     }
   }
 }

@@ -16,7 +16,9 @@ import {
   MqttContext,
   Payload,
 } from '@nestjs/microservices';
+import { ApiTags } from '@nestjs/swagger';
 @Controller('data-dasboard')
+@ApiTags('Data Dasboard')
 export class DataDasboardController {
   constructor(private readonly dataDasboardService: DataDasboardService) {}
   private messageData = [];
